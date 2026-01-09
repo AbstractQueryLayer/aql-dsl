@@ -1,0 +1,27 @@
+<?php
+
+namespace IfCastle\AQL\Dsl\Ddl;
+
+final class NameDefinition extends DdlStatementAbstract
+{
+    public function __construct(private string $name)
+    {
+        parent::__construct();
+    }
+    
+    #[\Override]
+    public function getAql(bool $forResolved = false): string
+    {
+        return $this->escape($this->name);
+    }
+    
+    public function getName(): string
+    {
+        return $this->name;
+    }
+    
+    protected function generateResult(): mixed
+    {
+        return $this->escape($this->name);
+    }
+}
